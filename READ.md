@@ -1,0 +1,1 @@
+We need a live-server as a development web server - using a small web server with reload capabilities. Installing a node through brew and than calling the command in the terminal: npm install -g live-server. 
