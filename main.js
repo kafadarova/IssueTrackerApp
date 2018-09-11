@@ -10,5 +10,35 @@ function fetchIssues() {
     var severity = issues[i].severity;
     var assignedTo = issues[i].assignedTo;
     var status = issues[i].status;
+
+    issuesList.innerHTML += '<div class="well">' +
+                            '<h6>Issue ID: ' + id + '</h6>' +
+                            '<p><span class="label label-info">'+
+                            status + '</span></p>' +
+                            '<h3>' + desc + '</h3>' +
+                            '<p><span class="glyphicon glyphicon-time"></span> '
+                            + severity + ' ' +
+                            '<span class="glyphicon glyphicon-user"></span> '
+                            + assignedTo + '</p>' +
+                            '<a href="#" class="btn btn-warning" onclick="setStatusClosed(\''+id+'\')">Close</a> ' +
+                            '<a href="#" class="btn btn-danger" onclick="deleteIssue(\''+id+'\')">Delete</a>'+
+                            '</div>';
+
   }
 }
+//   if(localStorage.getItem('issues') === null) {
+//     var issues = [];
+//     issues.push(issue);
+//     localStorage.setItem('issues', JSON.stringify(issues));
+//   } else {
+//     var issues = JSON.parse(localStorage.getItem('issues'));
+//     issues.push(issue);
+//     localStorage.setItem('issues', JSON.stringify(issues));
+//   }
+// }
+//
+// document.getElementById('issueInputForm').reset();
+//
+// fetchIssues();
+// e.preventDefault();
+// }
