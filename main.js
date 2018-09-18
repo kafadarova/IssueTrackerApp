@@ -1,18 +1,18 @@
 function fetchIssues() {
   // Retrieve the issues from Local Storage
   // Parse the result string into a JSON object
-  var issues = JSON.parse(localStorage.getItem('issues'));
-  var issuesList = document.getElementById('issuesList');
+  const issues = JSON.parse(localStorage.getItem('issues'));
+  const issuesList = document.getElementById('issuesList');
 
   // Access the html content of the issuesList element
   issuesList.innerHTML = '';
 
-  for (var i=0; i < issues.length; i++){
-    var id = issues[i].id;
-    var desc = issues[i].description;
-    var severity = issues[i].severity;
-    var assignedTo = issues[i].assignedTo;
-    var status = issues[i].status;
+  for (let i=0; i < issues.length; i++) {
+    const id = issues[i].id;
+    const desc = issues[i].description;
+    const severity = issues[i].severity;
+    const assignedTo = issues[i].assignedTo;
+    const status = issues[i].status;
 
 // Change the content
     issuesList.innerHTML += '<div class="well">' +
@@ -36,15 +36,15 @@ document.getElementById('issueInputForm').addEventListener('submit', saveIssue);
 
 // Save issue after submitting the form
 function saveIssue(e) {
-  //store the input values from the form
-  var issueId = chance.guid();
-  var issueDesc = document.getElementById('issueDescInput').value;
-  var issueSeverity = document.getElementById('issueSeverityInput').value;
-  var issueAssignedTo = document.getElementById('issueAssignedToInput').value;
-  var issueStatus = 'Open';
+// Store the input values from the form
+  const issueDesc = document.getElementById('issueDescInput').value;
+  const issueSeverity = document.getElementById('issueSeverityInput').value;
+  const issueAssignedTo = document.getElementById('issueAssignedToInput').value;
+  let issueId = chance.guid();
+  let issueStatus = 'Open';
 
 // Create an issue object
-  var issue = {
+  const issue = {
     id: issueId,
     description: issueDesc,
     severity: issueSeverity,
@@ -55,11 +55,11 @@ function saveIssue(e) {
 // Check if there is already an object in the local storage
 // Insert the new issue int the issues object
   if(localStorage.getItem('issues') === null) {
-    var issues = []; //create an issues array
-    issues.push(issue); //insert the new object
+    let issues = [];
+    issues.push(issue);
     localStorage.setItem('issues', JSON.stringify(issues));
   } else {
-    var issues = JSON.parse(localStorage.getItem('issues'));
+    let issues = JSON.parse(localStorage.getItem('issues'));
     issues.push(issue);
     // Update the local storage
     localStorage.setItem('issues', JSON.stringify(issues));
@@ -77,11 +77,10 @@ document.getElementById('issueInputForm').reset();
 // Change the status of the issue to Closed after clicking the button
 // Pass the id of the current issue as parameter
 function setStatusClosed (id) {
-  var issues = JSON.parse(localStorage.getItem('issues'));
-
-  for (var i = 0; i < issues.length; i++) {
+  let issues = JSON.parse(localStorage.getItem('issues'));
+  for (let i = 0; i < issues.length; i++) {
     if (issues[i].id == id){
-      issues[id].status = "Closed";
+      issues[i].status = "Closed";
     }
   }
   localStorage.setItem('issues', JSON.stringify(issues));
@@ -90,11 +89,11 @@ function setStatusClosed (id) {
 
 // Delete an issue
 function deleteIssue (id) {
-  var issue = JSON.parse(localStorage.getItem('issues'));
+  let issues = JSON.parse(localStorage.getItem('issues'));
 
-  for (var i = 0; i < issues.length; i++) {
-    if (issues[id].id == id){
-      issues.splice(i, 1); // Delete the current item from the issue array
+  for (let i = 0; i < issues.length; i++) {
+    if (issues[i].id == id){
+        issues.splice(i, 1); // Delete the current item from the issue array
     }
   }
   localStorage.setItem('issues', JSON.stringify(issues));
