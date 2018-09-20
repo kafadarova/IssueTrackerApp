@@ -70,7 +70,8 @@ document.getElementById('issueInputForm').reset();
 
 // Call again the fetchIssues function to regenerated the list output
   fetchIssues();
-  // Avoid the default submission of the form
+
+// Avoid the default submission of the form
   e.preventDefault();
 }
 
